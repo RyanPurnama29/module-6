@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SearchResult from "./searchResult";
+import doFetchAPI from "./doFetchAPI";
 
-function App() {
+const App = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+
+  const handleOnChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleOnClick = async () => {
+    const result = await doFetchAPI(searchQuery);
+    setSearchResult(result);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h3>Search the Giphy</h3>
+      <input
+        type="text"
+        aria-label="searchBox"
+        onChange={(e) => handleOnChange(e)}
+        value={searchQuery}
+      />
+      <button onClick={handleOnClick}>Search</button>
+      <SearchResult results={searchResult} />
+    </>
   );
-}
+};
 
 export default App;
