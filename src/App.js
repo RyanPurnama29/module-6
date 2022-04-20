@@ -16,7 +16,7 @@ const App = () => {
   };
 
   return (
-    <>
+    <div style={{ backgroundColor: "red" }}>
       <h3>Search the Giphy</h3>
       <input
         type="text"
@@ -26,7 +26,7 @@ const App = () => {
       />
       <button onClick={handleOnClick}>Search</button>
       <SearchResult results={searchResult} />
-    </>
+    </div>
   );
 };
 
