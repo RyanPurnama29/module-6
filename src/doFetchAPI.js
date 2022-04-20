@@ -1,6 +1,6 @@
 const doFetchAPI = async (searchQuery) => {
   let normalizeResponse = [];
-  const apiKey = "TQx9J71IRBSdwXcWHxKjzd3qBEyXjvZb";
+  const apiKey = process.env.REACT_APP_API_KEY;
   const response = await fetch(
     `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${searchQuery}&limit=25&offset=0&rating=g&lang=en`
   );
